@@ -19,3 +19,10 @@ describe('GET /version', () => {
     expect(res.headers['content-type']).toMatch(/application\/json/)
   })
 })
+
+describe('GET /version (format)', () => {
+  it('returns a semver-like version (x.y.z)', async () => {
+    const res = await request(app).get('/version')
+    expect(res.body.version).toMatch(/^\d+\.\d+\.\d+/)
+  })
+})
